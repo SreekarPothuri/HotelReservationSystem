@@ -3,11 +3,13 @@ package com.blz.hotelreservation;
 public class Hotel {
 
 	private String hotelName;
-	private int regularRate;
+	private int weekdayRoomRate;
+	private int weekendRoomRate;
 
-	public Hotel(String hotelName, int regularRate) {
+	public Hotel(String hotelName, int weekDayRoomRate, int weekendRoomRate) {
 		this.hotelName = hotelName;
-		this.regularRate = regularRate;
+		this.weekdayRoomRate = weekDayRoomRate;
+		this.weekendRoomRate = weekendRoomRate;
 	}
 
 	public String getHotelName() {
@@ -18,15 +20,25 @@ public class Hotel {
 		this.hotelName = hotelName;
 	}
 
-	public int getRegularRate() {
-		return regularRate;
+	public int getWeekdayRoomRate() {
+		return weekdayRoomRate;
 	}
 
-	public void setRegularRate(int regularRate) {
-		this.regularRate = regularRate;
+	public void setWeekdayRoomRate(int weekdayRoomRate) {
+		this.weekdayRoomRate = weekdayRoomRate;
 	}
 
+	public int getWeekendRoomRate() {
+		return weekendRoomRate;
+	}
+
+	public void setWeekendRoomRate(int weekendRoomRate) {
+		this.weekendRoomRate = weekendRoomRate;
+	}
+
+	@Override
 	public String toString() {
-		return "Hotel Name: " + hotelName + "  Rates for regular customer per Day: " + regularRate;
+		return "HotelDetails [Hotel Name: " + hotelName + "  WeekdayRoomRate: " + weekdayRoomRate + " WeekendRoomRate: "
+				+ weekendRoomRate + "]";
 	}
 }
