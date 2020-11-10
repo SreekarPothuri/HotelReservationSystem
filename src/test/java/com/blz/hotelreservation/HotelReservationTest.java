@@ -18,6 +18,6 @@ public class HotelReservationTest {
 	@Test
 	public void givenHotelsFindTheCheapestBestRatedHotel() throws ParseException {
 		String result = obj.cheapestBestRated("11Sep2020", "12Sep2020");
-		Assert.assertEquals("Bridgewood", result);
+		Assert.assertEquals("Bridgewood, Rating: 4 and Total Rates: $200", result);
 	}
 }
