@@ -16,10 +16,8 @@ public class HotelReservationTest {
 	}
 
 	@Test
-	public void givenHotelsFindTheCheapestOne() throws ParseException {
-		Object[] resultHotelName = obj.findCheapestHotel("11Sep2020", "12Sep2020").toArray();
-		Object[] expectedHotelName = { "Lakewood", "Bridgewood" };
-		Assert.assertArrayEquals(expectedHotelName, resultHotelName);
+	public void givenHotelsFindTheCheapestBestRatedHotel() throws ParseException {
+		String result = obj.cheapestBestRated("11Sep2020", "12Sep2020");
+		Assert.assertEquals("Bridgewood", result);
 	}
 }
-
