@@ -1,17 +1,10 @@
 package com.blz.hotelreservation;
 
-import java.time.DateTimeException;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class HotelReservation {
 
