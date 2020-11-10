@@ -4,11 +4,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class HotelReservation {
 
 	public static ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
+	static Map<String, Integer> map = new HashMap<>();
 
 	public ArrayList<Hotel> getHotel() {
 		return hotelList;
@@ -22,7 +24,7 @@ public class HotelReservation {
 	public static int countNoOfHotels() {
 		return hotelList.size();
 	}
-	
+
 	public static LocalDate convertStringToDate(String dateString) {
 		LocalDate date = null;
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("ddMMMyyyy");
@@ -33,16 +35,16 @@ public class HotelReservation {
 		}
 		return date;
 	}
-	
+
 	public static ArrayList<String> findCheapestHotel(String startDate, String endDate) {
 		LocalDate startDateInput = convertStringToDate(startDate);
 		LocalDate endDateInput = convertStringToDate(endDate);
-		
+
 		hotelList.add(new Hotel("Lakewood", 110, 90, 3));
 		hotelList.add(new Hotel("Bridgewood", 150, 50, 4));
 		hotelList.add(new Hotel("Ridgewood", 220, 150, 5));
 		ArrayList<String> cheapestHotelNameList = new ArrayList<>();
-		
+
 		int minRate = Integer.MAX_VALUE;
 		for (Hotel hotelDetail : hotelList) {
 			LocalDate startDay = startDateInput;
@@ -60,8 +62,20 @@ public class HotelReservation {
 			if (hotelRent <= minRate) {
 				minRate = hotelRent;
 				cheapestHotelNameList.add(hotelDetail.getHotelName());
+				map.put(hotelDetail.getHotelName(), hotelDetail.getRate());
 			}
 		}
 		return cheapestHotelNameList;
+	}
+
+	public String cheapestBestRated(String startDate, String endDate) {
+		findCheapestHotel(startDate, endDate);
+		Map.Entry<String, Integer> cheapestBestRatedHotel = null;
+		for (Map.Entry<String, Integer> entry : map.entrySet()) {
+			if (cheapestBestRatedHotel == null || entry.getValue().compareTo(cheapestBestRatedHotel.getValue()) > 0) {
+				cheapestBestRatedHotel = entry;
+			}
+		}
+		return cheapestBestRatedHotel.getKey();
 	}
 }
