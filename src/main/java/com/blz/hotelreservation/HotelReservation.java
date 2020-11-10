@@ -1,14 +1,9 @@
 package com.blz.hotelreservation;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
 public class HotelReservation {
 
-	private static Scanner sc = new Scanner(System.in);
 	private static ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
 		
 	public ArrayList<Hotel> getHotel(){
@@ -26,12 +21,9 @@ public class HotelReservation {
 
 	public static void main(String[] args) {
 		System.out.println("WELCOME TO HOTEL RESERVATION PROGRAM");
-		Hotel lakeWood=new Hotel("Lakewood",110);
-		Hotel bridgeWood=new Hotel("Bridgewood",160);
-		Hotel ridgeWood=new Hotel("Ridgewood",220);
-		hotelList.add(lakeWood);
-		hotelList.add(bridgeWood);
-		hotelList.add(ridgeWood);
+		hotelList.add(new Hotel("Lakewood",110));
+		hotelList.add(new Hotel("Bridgewood",160));
+		hotelList.add(new Hotel("Ridgewood",220));
 		System.out.println(hotelList);
 	}
 }
