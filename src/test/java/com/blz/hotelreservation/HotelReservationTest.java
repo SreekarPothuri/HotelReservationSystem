@@ -16,14 +16,26 @@ public class HotelReservationTest {
 	}
 
 	@Test
-	public void inGivenHotelsFindTheCheapestRatedOne() throws ParseException {
-		String result = obj.cheapestBestRated("11Sep2020", "12Sep2020");
+	public void givenHotelsFindTheCheapestBestRatedForRegularCustomer_ReturnsBridgeWood() throws ParseException {
+		String result = obj.cheapestBestRated("11Sep2020", "12Sep2020", "REGULAR");
 		Assert.assertEquals("BridgeWood, Rating: 4 and Total Rates: $200", result);
 	}
 
 	@Test
-	public void givenHotelsFindTheBestRatedHotel() throws ParseException {
-		String result = obj.findBestRatedHotel("11Sep2020", "12Sep2020");
+	public void givenHotelsFindTheCheapestBestRatedForRewardCustomer_ReturnsRidgeWood() throws ParseException {
+		String result = obj.cheapestBestRated("11Sep2020", "12Sep2020", "REWARD");
+		Assert.assertEquals("RidgeWood, Rating: 5 and Total Rates: $140", result);
+	}
+
+	@Test
+	public void givenHotelsFindTheBestRatedHotelForRegularCustomer_ReturnsRidgeWood() throws ParseException {
+		String result = obj.findBestRatedHotel("11Sep2020", "12Sep2020", "REGULAR");
 		Assert.assertEquals("RidgeWood & Total Rates: $370", result);
+	}
+
+	@Test
+	public void givenHotelsFindTheBestRatedHotelForRewardCustomer_ReturnsRidgeWood() throws ParseException {
+		String result = obj.findBestRatedHotel("11Sep2020", "12Sep2020", "REWARD");
+		Assert.assertEquals("RidgeWood & Total Rates: $140", result);
 	}
 }
