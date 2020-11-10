@@ -14,8 +14,8 @@ public class HotelReservation {
 		return hotelList;
 	}
 
-	public static void addhotel(String name, int weekdayRoomRate, int weekendRoomRate) {
-		Hotel hotels = new Hotel(name, weekdayRoomRate, weekendRoomRate);
+	public static void addhotel(String name, int weekdayRoomRate, int weekendRoomRate, int rate) {
+		Hotel hotels = new Hotel(name, weekdayRoomRate, weekendRoomRate, rate);
 		hotelList.add(hotels);
 	}
 
@@ -38,9 +38,9 @@ public class HotelReservation {
 		LocalDate startDateInput = convertStringToDate(startDate);
 		LocalDate endDateInput = convertStringToDate(endDate);
 		
-		hotelList.add(new Hotel("Lakewood", 110, 90));
-		hotelList.add(new Hotel("Bridgewood", 150, 50));
-		hotelList.add(new Hotel("Ridgewood", 220, 150));
+		hotelList.add(new Hotel("Lakewood", 110, 90, 3));
+		hotelList.add(new Hotel("Bridgewood", 150, 50, 4));
+		hotelList.add(new Hotel("Ridgewood", 220, 150, 5));
 		ArrayList<String> cheapestHotelNameList = new ArrayList<>();
 		
 		int minRate = Integer.MAX_VALUE;
