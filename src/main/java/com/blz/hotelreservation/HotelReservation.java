@@ -22,11 +22,11 @@ public class HotelReservation {
 		return hotelList;
 	}
 
-	public static void addhotel(String name, int weekDayRegularRate, int weekEndRegularRate,
-			int weekDayRewardRate, int weekEndRewardRate, int rate) {
+	public static void addhotel(String name, int weekDayRegularRate, int weekEndRegularRate, int weekDayRewardRate,
+			int weekEndRewardRate, int rate) {
 
-		Hotel hotels = new Hotel(name, weekDayRegularRate, weekEndRegularRate, weekDayRewardRate,
-				weekEndRewardRate, rate);
+		Hotel hotels = new Hotel(name, weekDayRegularRate, weekEndRegularRate, weekDayRewardRate, weekEndRewardRate,
+				rate);
 		hotelList.add(hotels);
 	}
 
@@ -45,7 +45,7 @@ public class HotelReservation {
 		return date;
 	}
 
-	public static void findhotelRent(String startDate, String endDate) {
+	public static void findhotelRent(String startDate, String endDate, String customer) {
 		LocalDate startDateInput = convertStringToDate(startDate);
 		LocalDate endDateInput = convertStringToDate(endDate);
 		Integer hotelRent;
@@ -60,10 +60,21 @@ public class HotelReservation {
 			hotelRent = 0;
 			while (!(startDay.equals(endDay))) {
 				int day = startDay.getDayOfWeek().getValue();
-				if (day == 6 || day == 7) {
-					hotelRent = hotelRent + hotelDetail.getWeekEndRegularRate();
-				} else {
-					hotelRent = hotelRent + hotelDetail.getWeekDayRegularRate();
+				switch (customer) {
+				case "REGULAR":
+					if (day == 6 || day == 7) {
+						hotelRent = hotelRent + hotelDetail.getWeekEndRegularRate();
+					} else {
+						hotelRent = hotelRent + hotelDetail.getWeekDayRegularRate();
+					}
+					break;
+				case "REWARD":
+					if (day == 6 || day == 7) {
+						hotelRent = hotelRent + hotelDetail.getWeekEndRewardRate();
+					} else {
+						hotelRent = hotelRent + hotelDetail.getWeekDayRewardRate();
+					}
+					break;
 				}
 				startDay = startDay.plusDays(1);
 			}
@@ -71,7 +82,7 @@ public class HotelReservation {
 		}
 	}
 
-	public static ArrayList<String> findCheapestHotel(String startDate, String endDate) {
+	public static ArrayList<String> findCheapestHotel(String startDate, String endDate, String customer) {
 		LocalDate startDateInput = convertStringToDate(startDate);
 		LocalDate endDateInput = convertStringToDate(endDate);
 
@@ -88,10 +99,21 @@ public class HotelReservation {
 			int hotelRent = 0;
 			while (!(startDay.equals(endDay))) {
 				int day = startDay.getDayOfWeek().getValue();
-				if (day == 6 || day == 7) {
-					hotelRent = hotelRent + hotelDetail.getWeekEndRegularRate();
-				} else {
-					hotelRent = hotelRent + hotelDetail.getWeekDayRegularRate();
+				switch (customer) {
+				case "REGULAR":
+					if (day == 6 || day == 7) {
+						hotelRent = hotelRent + hotelDetail.getWeekEndRegularRate();
+					} else {
+						hotelRent = hotelRent + hotelDetail.getWeekDayRegularRate();
+					}
+					break;
+				case "REWARD":
+					if (day == 6 || day == 7) {
+						hotelRent = hotelRent + hotelDetail.getWeekEndRewardRate();
+					} else {
+						hotelRent = hotelRent + hotelDetail.getWeekDayRewardRate();
+					}
+					break;
 				}
 				startDay = startDay.plusDays(1);
 			}
@@ -105,8 +127,9 @@ public class HotelReservation {
 		return cheapestHotelNameList;
 	}
 
-	public String cheapestBestRated(String startDate, String endDate) {
-		findCheapestHotel(startDate, endDate);
+	public String cheapestBestRated(String startDate, String endDate, String customer) {
+		findCheapestHotel(startDate, endDate, customer);
+
 		Map.Entry<String, Integer> cheapestBestRatedHotel = null;
 		for (Map.Entry<String, Integer> entry : map.entrySet()) {
 			if (cheapestBestRatedHotel == null || entry.getValue().compareTo(cheapestBestRatedHotel.getValue()) > 0) {
@@ -117,9 +140,9 @@ public class HotelReservation {
 				+ " and Total Rates: $" + price;
 	}
 
-	public String findBestRatedHotel(String startDate, String endDate) {
-		findhotelRent(startDate, endDate);
-		
+	public String findBestRatedHotel(String startDate, String endDate, String customer) {
+		findhotelRent(startDate, endDate, customer);
+
 		addhotel("LakeWood", 110, 90, 80, 80, 3);
 		addhotel("BridgeWood", 150, 50, 110, 50, 4);
 		addhotel("RidgeWood", 220, 150, 100, 40, 5);
