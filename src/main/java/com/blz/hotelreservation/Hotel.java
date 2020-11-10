@@ -3,14 +3,19 @@ package com.blz.hotelreservation;
 public class Hotel {
 
 	private String hotelName;
-	private int weekdayRoomRate;
-	private int weekendRoomRate;
+	private int weekDayRegularRate;
+	private int weekEndRegularRate;
 	private int rate;
+	private int weekDayRewardRate;
+	private int weekEndRewardRate;
 
-	public Hotel(String hotelName, int weekDayRoomRate, int weekendRoomRate, int rate) {
+	public Hotel(String hotelName, int weekDayRegularRate, int weekEndRegularRate, int weekDayRewardRate,
+			int weekEndRewardRate, int rate) {
 		this.hotelName = hotelName;
-		this.weekdayRoomRate = weekDayRoomRate;
-		this.weekendRoomRate = weekendRoomRate;
+		this.weekDayRegularRate = weekDayRegularRate;
+		this.weekEndRegularRate = weekEndRegularRate;
+		this.weekDayRewardRate = weekDayRewardRate;
+		this.weekEndRewardRate = weekEndRewardRate;
 		this.rate = rate;
 	}
 
@@ -22,20 +27,20 @@ public class Hotel {
 		this.hotelName = hotelName;
 	}
 
-	public int getWeekdayRoomRate() {
-		return weekdayRoomRate;
+	public int getWeekDayRegularRate() {
+		return weekDayRegularRate;
 	}
 
-	public void setWeekdayRoomRate(int weekdayRoomRate) {
-		this.weekdayRoomRate = weekdayRoomRate;
+	public void setWeekDayRegularRate(int weekDayRegularRate) {
+		this.weekDayRegularRate = weekDayRegularRate;
 	}
 
-	public int getWeekendRoomRate() {
-		return weekendRoomRate;
+	public int getWeekEndRegularRate() {
+		return weekEndRegularRate;
 	}
 
-	public void setWeekendRoomRate(int weekendRoomRate) {
-		this.weekendRoomRate = weekendRoomRate;
+	public void setWeekEndRegularRate(int weekEndRegularRate) {
+		this.weekEndRegularRate = weekEndRegularRate;
 	}
 
 	public int getRate() {
@@ -46,9 +51,26 @@ public class Hotel {
 		this.rate = rate;
 	}
 
+	public int getWeekDayRewardRate() {
+		return weekDayRewardRate;
+	}
+
+	public void setWeekDayRewardRate(int weekDayRewardRate) {
+		this.weekDayRewardRate = weekDayRewardRate;
+	}
+
+	public int getWeekEndRewardRate() {
+		return weekEndRewardRate;
+	}
+
+	public void setWeekEndRewardRate(int weekEndRewardRate) {
+		this.weekEndRewardRate = weekEndRewardRate;
+	}
+
 	@Override
 	public String toString() {
-		return "HotelDetails [Hotel Name: " + hotelName + "  WeekdayRoomRate: " + weekdayRoomRate + " WeekendRoomRate: "
-				+ weekendRoomRate + " Rating: " + rate + "]";
+		return "HotelDetails [Hotel Name: " + hotelName + "  Regular_WeekDayRoomRate: " + weekDayRegularRate
+				+ " Regular_WeekendRoomRate: " + weekEndRegularRate + "  Reward_WeekDayRoomRate: " + weekDayRewardRate
+				+ " Reward_WeekendRoomRate: " + weekEndRewardRate + " Rating: " + rate + "]";
 	}
 }
