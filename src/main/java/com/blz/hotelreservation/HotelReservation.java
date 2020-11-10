@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class HotelReservation {
 
+	private static int price;
 	public static ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
 	static Map<String, Integer> map = new HashMap<>();
 
@@ -61,6 +62,7 @@ public class HotelReservation {
 			}
 			if (hotelRent <= minRate) {
 				minRate = hotelRent;
+				price = hotelRent;
 				cheapestHotelNameList.add(hotelDetail.getHotelName());
 				map.put(hotelDetail.getHotelName(), hotelDetail.getRate());
 			}
@@ -76,6 +78,7 @@ public class HotelReservation {
 				cheapestBestRatedHotel = entry;
 			}
 		}
-		return cheapestBestRatedHotel.getKey();
+		return cheapestBestRatedHotel.getKey() + ", Rating: " + cheapestBestRatedHotel.getValue()
+				+ " and Total Rates: $" + price;
 	}
 }
