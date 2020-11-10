@@ -22,8 +22,11 @@ public class HotelReservation {
 		return hotelList;
 	}
 
-	public static void addhotel(String name, int weekdayRoomRate, int weekendRoomRate, int rate) {
-		Hotel hotels = new Hotel(name, weekdayRoomRate, weekendRoomRate, rate);
+	public static void addhotel(String name, int weekDayRegularRate, int weekEndRegularRate,
+			int weekDayRewardRate, int weekEndRewardRate, int rate) {
+
+		Hotel hotels = new Hotel(name, weekDayRegularRate, weekEndRegularRate, weekDayRewardRate,
+				weekEndRewardRate, rate);
 		hotelList.add(hotels);
 	}
 
@@ -47,9 +50,9 @@ public class HotelReservation {
 		LocalDate endDateInput = convertStringToDate(endDate);
 		Integer hotelRent;
 
-		addhotel("LakeWood", 110, 90, 3);
-		addhotel("BridgeWood", 150, 50, 4);
-		addhotel("RidgeWood", 220, 150, 5);
+		addhotel("LakeWood", 110, 90, 80, 80, 3);
+		addhotel("BridgeWood", 150, 50, 110, 50, 4);
+		addhotel("RidgeWood", 220, 150, 100, 40, 5);
 
 		for (Hotel hotelDetail : hotelList) {
 			LocalDate startDay = startDateInput;
@@ -58,9 +61,9 @@ public class HotelReservation {
 			while (!(startDay.equals(endDay))) {
 				int day = startDay.getDayOfWeek().getValue();
 				if (day == 6 || day == 7) {
-					hotelRent = hotelRent + hotelDetail.getWeekendRoomRate();
+					hotelRent = hotelRent + hotelDetail.getWeekEndRegularRate();
 				} else {
-					hotelRent = hotelRent + hotelDetail.getWeekdayRoomRate();
+					hotelRent = hotelRent + hotelDetail.getWeekDayRegularRate();
 				}
 				startDay = startDay.plusDays(1);
 			}
@@ -72,9 +75,10 @@ public class HotelReservation {
 		LocalDate startDateInput = convertStringToDate(startDate);
 		LocalDate endDateInput = convertStringToDate(endDate);
 
-		addhotel("LakeWood", 110, 90, 3);
-		addhotel("BridgeWood", 150, 50, 4);
-		addhotel("RidgeWood", 220, 150, 5);
+		addhotel("LakeWood", 110, 90, 80, 80, 3);
+		addhotel("BridgeWood", 150, 50, 110, 50, 4);
+		addhotel("RidgeWood", 220, 150, 100, 40, 5);
+
 		ArrayList<String> cheapestHotelNameList = new ArrayList<>();
 
 		int minRate = Integer.MAX_VALUE;
@@ -85,9 +89,9 @@ public class HotelReservation {
 			while (!(startDay.equals(endDay))) {
 				int day = startDay.getDayOfWeek().getValue();
 				if (day == 6 || day == 7) {
-					hotelRent = hotelRent + hotelDetail.getWeekendRoomRate();
+					hotelRent = hotelRent + hotelDetail.getWeekEndRegularRate();
 				} else {
-					hotelRent = hotelRent + hotelDetail.getWeekdayRoomRate();
+					hotelRent = hotelRent + hotelDetail.getWeekDayRegularRate();
 				}
 				startDay = startDay.plusDays(1);
 			}
@@ -115,9 +119,11 @@ public class HotelReservation {
 
 	public String findBestRatedHotel(String startDate, String endDate) {
 		findhotelRent(startDate, endDate);
-		addhotel("LakeWood", 110, 90, 3);
-		addhotel("BridgeWood", 150, 50, 4);
-		addhotel("RidgeWood", 220, 150, 5);
+		
+		addhotel("LakeWood", 110, 90, 80, 80, 3);
+		addhotel("BridgeWood", 150, 50, 110, 50, 4);
+		addhotel("RidgeWood", 220, 150, 100, 40, 5);
+
 		int bestRating = 0;
 		Hotel BestRatedHotel = null;
 		for (Hotel hotelDetail : hotelList) {
