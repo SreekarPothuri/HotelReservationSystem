@@ -6,7 +6,6 @@ import java.time.format.DateTimeParseException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import com.blz.hotelreservation.*;
 
 public class HotelReservationTest {
 
